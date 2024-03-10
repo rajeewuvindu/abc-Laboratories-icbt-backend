@@ -20,5 +20,9 @@ Route::post('/password/reset', [ResetPasswordController::class, 'reset'])->name(
 Route::group(['middleware' => ['auth:admins']], function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('admin.logout');
 
-    Route::get('/', [AdminController::class, 'index'])->name('admin.users');
 });
+Route::get('/', [AdminController::class, 'index'])->name('admin.dashboard');
+Route::get('/appointments', [AdminController::class, 'showAppointments'])->name('admin.appointments');
+Route::get('/patients', [AdminController::class, 'showPatients'])->name('admin.patients');
+Route::get('/technicians', [AdminController::class, 'showTechnicians'])->name('admin.technicians');
+Route::get('/reports', [AdminController::class, 'showReports'])->name('admin.reports');
