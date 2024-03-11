@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+//Public routes
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/password/email', [AuthController::class, 'sendResetLinkEmail'])->name('api.password.email');
+
+
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::get('/user', [AdminController::class, 'user']);
+    // 2|60mGny0GrXCeRFdEoSwlX2DWvE61zPMhHJWqn6rs
 });

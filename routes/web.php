@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// Route::get('/password/reset/{token}', [AuthController::class, 'showResetForm'])->name('api.password.reset');
+// Route::post('/password/reset', [AuthController::class, 'reset'])->name('api.password.update');
+// Route::get('/password/reset-success', function () {
+//     return view('api-support-views.auth.passwords.reset-success');
+// })->name('api.password.reset-success');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
