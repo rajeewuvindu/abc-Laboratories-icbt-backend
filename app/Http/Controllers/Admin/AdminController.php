@@ -14,6 +14,7 @@ class AdminController extends Controller
 
     public function showAppointments()
     {
+        // $appin
         return view('admin-views.appointments');
     }
 
@@ -22,10 +23,6 @@ class AdminController extends Controller
         return view('admin-views.patients');
     }
 
-    public function showTechnicians()
-    {
-        return view('admin-views.technicians');
-    }
 
     public function showReports()
     {

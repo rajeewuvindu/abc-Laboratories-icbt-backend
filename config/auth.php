@@ -55,6 +55,11 @@ return [
             'driver' => 'session',
             'provider' => 'technicians',
         ],
+
+        'doctors' => [
+            'driver' => 'session',
+            'provider' => 'doctors',
+        ],
     ],
 
     /*
@@ -86,6 +91,10 @@ return [
         'technicians' => [
             'driver' => 'eloquent',
             'model' => App\Models\Technician::class,
+        ],
+        'doctors' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Doctor::class,
         ],
         // 'users' => [
         //     'driver' => 'database',
@@ -125,7 +134,15 @@ return [
 
         'technicians' => [
             'provider' => 'technicians',
-            'table' => 'admin_password_resets',
+            'table' => 'technicians_password_resets',
+            'expire' => 60,
+            'throttle' => 1,
+        ],
+
+        
+        'doctors' => [
+            'provider' => 'doctors',
+            'table' => 'doctors_password_resets',
             'expire' => 60,
             'throttle' => 1,
         ],

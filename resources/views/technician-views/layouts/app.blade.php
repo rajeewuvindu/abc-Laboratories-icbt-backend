@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>Admin Panel</title>
+    <title>Technician Panel</title>
     <title>{{ config('app.name', 'Hayleys Fentons') }}</title>
 
     <!-- Scripts -->
@@ -101,12 +101,12 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('admin.logout') }}" onclick="event.preventDefault();
+                                    <a class="dropdown-item" href="{{ route('technician.logout') }}" onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ route('technician.logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
                                 </div>
@@ -118,110 +118,13 @@
             </nav>
         </div>
 
-        <!-- 
-        <div class="row" id="myFlexContainer" style="width: 100%;">
-            <div class="navbar navbar-expand-lg navbar-light shadow-sm d-flex flex-column vh-100" style="width: auto;">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidenavbarSupportedContent" aria-controls="sidenavbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="sidenavbarSupportedContent" style="width: auto;">
-                    <ul class="nav flex-column mb-auto hover-nav">
-                        <li>
-                            <a href="" class="nav-link link-dark">
-                                <svg class="bi me-2" width="16" height="16">
-                                    <use xlink:href="#people-circle" />
-                                </svg>
-                                Users
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="nav-link link-dark">
-                                <svg class="bi me-2" width="16" height="16">
-                                    <use xlink:href="#cashier" />
-                                </svg>
-                                Cashier
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class=" nav-link link-dark">
-                                <svg class="bi me-2" width="16" height="16">
-                                    <use xlink:href="#department" />
-                                </svg>
-                                Department
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class=" nav-link link-dark">
-                                <svg class="bi me-2" width="16" height="16">
-                                    <use xlink:href="#cost_center" />
-                                </svg>
-                                Cost Centers
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="nav-link link-dark">
-                                <svg class="bi me-2" width="16" height="16">
-                                    <use xlink:href="#bank" />
-                                </svg>
-                                Banks
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="nav-link link-dark">
-                                <svg class="bi me-2" width="16" height="16">
-                                    <use xlink:href="#authorization-levels" />
-                                </svg>
-                                Authorization Levels
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="nav-link link-dark">
-                                <svg class="bi me-2" width="16" height="16">
-                                    <use xlink:href="#Categories" />
-                                </svg>
-                                Categories
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="nav-link link-dark">
-                                <svg class="bi me-2" width="16" height="16">
-                                    <use xlink:href="#project" />
-                                </svg>
-                                Projects
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <main class="col py-4" style="width: 76%;">
-                @yield('content')
-            </main>
-            @guest('admins')
-            <div>
-                <main class="col py-4">
-                    @yield('content')
-                </main>
-            </div>
-            @endguest
-        </div> -->
-
         <div class="container-fluid" style="padding-top: 0px; position:fixed">
             <div class="row flex-nowrap">
                 <div class="bg-dark col-auto col-md-4 col-lg-2 min-vh-100 d-flex flex-column justify-content-between">
                     <div class="bg-dark p-2">
                         <ul class="nav nav-pills flex-column mt-4">
-                            <li class="nav-item py-2 py-sm-0">
-                                <a href="{{route('admin.dashboard')}}" class="nav-link text-white d-flex align-items-center">
-                                    <svg class="bi me-2" width="30" height="40" fill="#FFFFFF">
-                                        <use xlink:href="#guage" />
-                                    </svg>
-                                    <span class="fs-4 d-none d-sm-inline ms-2">Dashboard</span>
-                                </a>
-                            </li>
-
                             <div class="nav-item py-2 py-sm-0">
-                                <a href="{{route('admin.appointments')}}" class="nav-link  d-flex align-items-center">
+                                <a href="{{route('technician.appointments')}}" class="nav-link  d-flex align-items-center">
                                     <svg class="bi me-2" width="30" height="40" fill="#FFFFFF">
                                         <use xlink:href="#home" />
                                     </svg>
@@ -230,25 +133,15 @@
                             </div>
 
                             <div class="nav-item py-2 py-sm-0">
-                                <a href="{{route('admin.patients')}}" class="nav-link d-flex align-items-center">
+                                <a href="{{route('technician.patients')}}" class="nav-link d-flex align-items-center">
                                     <svg class="bi me-2" width="30" height="40" fill="#FFFFFF">
                                         <use xlink:href="#users" />
                                     </svg>
                                     <span class="fs-4 d-none d-sm-inline ms-2">Patients</span>
                                 </a>
                             </div>
-
                             <div class="nav-item py-2 py-sm-0">
-                                <a href="{{route('admin.technicians')}}" class="nav-link d-flex align-items-center">
-                                    <svg class="bi me-2" width="30" height="40" fill="#FFFFFF">
-                                        <use xlink:href="#technicians" />
-                                    </svg>
-                                    <span class="fs-4 d-none d-sm-inline ms-2">Technicians</span>
-                                </a>
-                            </div>
-
-                            <div class="nav-item py-2 py-sm-0">
-                                <a href="{{route('admin.doctors')}}" class="nav-link d-flex align-items-center">
+                                <a href="{{route('technician.doctors')}}" class="nav-link d-flex align-items-center">
                                     <svg class="bi me-2" width="30" height="40" fill="#FFFFFF">
                                         <use xlink:href="#doctors" />
                                     </svg>
@@ -257,7 +150,7 @@
                             </div>
 
                             <div class="nav-item py-2 py-sm-0">
-                                <a href="{{route('admin.reports')}}" class="nav-link d-flex align-items-center">
+                                <a href="{{route('technician.reports')}}" class="nav-link d-flex align-items-center">
                                     <svg class="bi me-2" width="30" height="40" fill="#FFFFFF">
                                         <use xlink:href="#reports" />
                                     </svg>
