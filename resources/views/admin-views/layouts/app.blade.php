@@ -230,6 +230,15 @@
                             </div>
 
                             <div class="nav-item py-2 py-sm-0">
+                                <a href="{{route('admin.test_types')}}" class="nav-link d-flex align-items-center">
+                                    <svg class="bi me-2" width="30" height="40" fill="#FFFFFF">
+                                        <use xlink:href="#doctors" />
+                                    </svg>
+                                    <span class="fs-4 d-none d-sm-inline ms-2">Test Types</span>
+                                </a>
+                            </div>
+
+                            <div class="nav-item py-2 py-sm-0">
                                 <a href="{{route('admin.patients')}}" class="nav-link d-flex align-items-center">
                                     <svg class="bi me-2" width="30" height="40" fill="#FFFFFF">
                                         <use xlink:href="#users" />

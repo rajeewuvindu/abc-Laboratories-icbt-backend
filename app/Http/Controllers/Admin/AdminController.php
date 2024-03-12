@@ -29,8 +29,5 @@ class AdminController extends Controller
         return view('admin-views.reports');
     }
 
-    public function user()
-    {
-        return "PAK U";
-    }
+  
 }

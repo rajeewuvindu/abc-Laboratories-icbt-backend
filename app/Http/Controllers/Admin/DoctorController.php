@@ -29,6 +29,7 @@ class DoctorController extends Controller
         $doctor = new Doctor();
         $doctor->name = $request->name;
         $doctor->email = $request->email;
+        $doctor->status = 'active';
         $doctor->save();
 
         if ($doctor) {
@@ -60,7 +61,7 @@ class DoctorController extends Controller
                 return redirect()->back()->with('error', 'The email has already been taken.');
             }
         }
-        
+
         $doctor->name = $request->name;
         $doctor->email = $request->email;
         $doctor->save();
@@ -69,6 +70,21 @@ class DoctorController extends Controller
             return redirect()->back()->with('success', "Changes Saved Successfully");
         } else {
             return redirect()->back()->with('error', "Failed to edit Doctor");
+        }
+    }
+
+
+    public function removeDoctor(Doctor $doctor)
+    {
+        if ($doctor) {
+            $doctor->status = 'deleted';
+            $doctor->save();
+
+            if ($doctor) {
+                return redirect()->back()->with('success', "Changes Saved Successfully");
+            } else {
+                return redirect()->back()->with('error', "Failed to edit Doctor");
+            }
         }
     }
 }

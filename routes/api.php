@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\PatientController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,9 @@ Route::post('/password/email', [AuthController::class, 'sendResetLinkEmail'])->n
 
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::get('/user', [AdminController::class, 'user']);
+    Route::get('/user', [PatientController::class, 'user']);
+
+    Route::post('/user', [PatientController::class, 'user']);
+
     // 2|60mGny0GrXCeRFdEoSwlX2DWvE61zPMhHJWqn6rs
 });

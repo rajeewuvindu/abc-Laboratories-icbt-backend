@@ -15,7 +15,9 @@
 
                 <th data-sortable="true" data-field="name" data-filter-control="input">Name</th>
                 <th data-sortable="true" data-field="email" data-filter-control="input">Email</th>
+                <th data-sortable="true" data-field="status" data-filter-control="input">Status</th>
                 <th>Edit</th>
+                <th>Delete</th>
 
             </tr>
         </thead>
@@ -24,7 +26,13 @@
             <tr>
                 <td class="text-center">{{$doctor->name}}</td>
                 <td class="text-end">{{$doctor->email}}</td>
+                @if($doctor->status == "deleted")
+                <td class="text-center text-danger fw-bolder">{{str_replace('_', ' ', Str::title($doctor->status))}}</td>
+                @else
+                <td class="text-center text-success fw-bolder">{{str_replace('_', ' ', Str::title($doctor->status))}}</td>
+                @endif 
                 <td><a href="{{ route('admin.edit_doctor_form', $doctor->id) }}" class="btn btn-primary">Edit</a></td>
+                <td><a href="{{ route('admin.remove_doctor', $doctor->id) }}" class="btn btn-primary">Delete</a></td>
             </tr>
             @endforeach
 

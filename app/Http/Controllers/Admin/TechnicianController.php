@@ -29,6 +29,7 @@ class TechnicianController extends Controller
         $technician = new Technician();
         $technician->name = $request->name;
         $technician->email = $request->email;
+        $technician->status = 'active';
         $technician->save();
 
         if ($technician) {
@@ -61,7 +62,7 @@ class TechnicianController extends Controller
                 return redirect()->back()->with('error', 'The email has already been taken.');
             }
         }
-        
+
         $technician->name = $request->name;
         $technician->email = $request->email;
         $technician->save();
@@ -70,6 +71,20 @@ class TechnicianController extends Controller
             return redirect()->back()->with('success', "Changes Saved Successfully");
         } else {
             return redirect()->back()->with('error', "Failed to edit Technician");
+        }
+    }
+
+    public function removeTechnician(Technician $technician)
+    {
+        if ($technician) {
+            $technician->status = 'status';
+            $technician->save();
+
+            if ($technician) {
+                return redirect()->back()->with('success', "Technician Deleted Successfully");
+            } else {
+                return redirect()->back()->with('error', "Failed to delete Technician");
+            }
         }
     }
 }

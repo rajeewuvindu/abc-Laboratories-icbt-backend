@@ -18,6 +18,7 @@ class CreateTechniciansTable extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('password')->nullable();
+            $table->string('status');
             $table->rememberToken();
             $table->timestamps();
         });
