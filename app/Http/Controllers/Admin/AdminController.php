@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Appointment;
+use App\Models\Report;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -14,19 +17,14 @@ class AdminController extends Controller
 
     public function showAppointments()
     {
-        // $appin
-        return view('admin-views.appointments');
+        $appointments = Appointment::all();
+        return view('admin-views.appointments', compact('appointments'));
     }
 
     public function showPatients()
     {
-        return view('admin-views.patients');
-    }
-
-
-    public function showReports()
-    {
-        return view('admin-views.reports');
+        $patients = User::all();
+        return view('admin-views.patients', compact('patients'));
     }
 
   

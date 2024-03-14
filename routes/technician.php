@@ -27,11 +27,17 @@ Route::group(['middleware' => ['auth:technicians']], function () {
 
     // Route::get('/', [TechnicianController::class, 'index'])->name('technician.users');
     Route::get('/', [AppointmentController::class, 'showAppointments'])->name('technician.appointments');
+    Route::post('/assign-doctor', [AppointmentController::class, 'assignDoctor'])->name('technician.assign_doctor');
+    Route::get('/complete-appointment/{appointment}', [AppointmentController::class, 'completeAppointment'])->name('technician.complete_appointment');
 
     Route::get('/doctors', [DoctorController::class, 'showDoctors'])->name('technician.doctors');
 
     
     Route::get('/patients', [PatientController::class, 'showPatients'])->name('technician.patients');
     Route::get('/reports', [ReportController::class, 'showReports'])->name('technician.reports');
+    Route::get('/add-report', [ReportController::class, 'showAddReportForm'])->name('technician.add_report_form');
+    Route::post('/save-report', [ReportController::class, 'addReport'])->name('technician.add_report');
+
+    Route::get('/view-report/{report}', [ReportController::class, 'viewReportFile'])->name('technician.view_report');
 
 });

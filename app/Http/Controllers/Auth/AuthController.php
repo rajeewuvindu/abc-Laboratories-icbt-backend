@@ -35,13 +35,7 @@ class AuthController extends Controller
             'name' => $fields['name'],
             'email' => $fields['email'],
             'password' => bcrypt($fields['password']),
-            'auth_level_id' => $fields['auth_level_id'],
-            'designation' => $fields['designation'],
-            'emp_number' => $fields['emp_number'],
-            'department' => $fields['department'],
-            'unsettled_limit' => $fields['unsettled_limit'],
-            'created_by' => $fields['created_by'],
-            'status' => 'pending',
+            ''
         ]);
 
         $token = $user->createToken('myapptoken')->plainTextToken;

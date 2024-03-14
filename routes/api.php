@@ -28,5 +28,8 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('/user', [PatientController::class, 'user']);
 
+
+    Route::post('/add-appointment', [PatientController::class, 'addAppointment']);
+
     // 2|60mGny0GrXCeRFdEoSwlX2DWvE61zPMhHJWqn6rs
 });

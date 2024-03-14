@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Auth\ForgotPasswordController;
 use App\Http\Controllers\Admin\Auth\LoginController;
 use App\Http\Controllers\Admin\Auth\ResetPasswordController;
 use App\Http\Controllers\Admin\DoctorController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\TechnicianController;
 use App\Http\Controllers\Admin\TestTypeController;
 use Illuminate\Support\Facades\Route;
@@ -54,5 +55,7 @@ Route::group(['middleware' => ['auth:admins']], function () {
     Route::get('/appointments', [AdminController::class, 'showAppointments'])->name('admin.appointments');
     Route::get('/patients', [AdminController::class, 'showPatients'])->name('admin.patients');
 
-    Route::get('/reports', [AdminController::class, 'showReports'])->name('admin.reports');
+    Route::get('/reports', [ReportController::class, 'showReports'])->name('admin.reports');
+    Route::get('/view-report/{report}', [ReportController::class, 'viewReportFile'])->name('admin.view_report');
+
 });

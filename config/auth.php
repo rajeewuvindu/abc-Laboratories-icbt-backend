@@ -134,7 +134,7 @@ return [
 
         'technicians' => [
             'provider' => 'technicians',
-            'table' => 'technicians_password_resets',
+            'table' => 'technician_password_resets',
             'expire' => 60,
             'throttle' => 1,
         ],
@@ -142,7 +142,7 @@ return [
         
         'doctors' => [
             'provider' => 'doctors',
-            'table' => 'doctors_password_resets',
+            'table' => 'doctor_password_resets',
             'expire' => 60,
             'throttle' => 1,
         ],

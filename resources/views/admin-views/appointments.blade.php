@@ -11,45 +11,43 @@
         <thead>
             <tr>
                 <th data-sortable="true" data-field="status" data-filter-control="input">Status</th>
-                <th data-sortable="true" data-field="emp_number" data-filter-control="input">EPF Number</th>
-                <th data-sortable="true" data-field="auth_level" data-filter-control="input">Authorization Level</th>
-                <th data-sortable="true" data-field="user_id" data-filter-control="input">User ID</th>
-                <th data-sortable="true" data-field="vendor_code" data-filter-control="input">Vendor Code</th>
-                <th data-sortable="true" data-field="user" data-filter-control="input">User</th>
-                <th data-sortable="true" data-field="email" data-filter-control="input">Email</th>
-                <th data-sortable="true" data-field="phone" data-filter-control="input">Phone</th>
-                <th data-sortable="true" data-field="department" data-filter-control="select">Department</th>
-                <th data-sortable="true" data-field="designation" data-filter-control="input">Designation</th>
-                <th>Edit</th>
-                <th>Enable/Disable</th>
-                <th>View Details</th>
-
+                <th data-sortable="true" data-field="id" data-filter-control="input">Patient ID</th>
+                <th data-sortable="true" data-field="name" data-filter-control="input">Patient Name</th>
+                <th data-sortable="true" data-field="test_type" data-filter-control="input">Test Type</th>
+                <th data-sortable="true" data-field="date" data-filter-control="input">Date</th>
+                <th data-sortable="true" data-field="time" data-filter-control="input">Time</th>
+                <th data-sortable="true" data-field="doctor" data-filter-control="input">Doctor Assigned</th>
             </tr>
         </thead>
         <tbody>
+            @foreach($appointments as $appointment)
             <tr>
-             
-                <td class="text-center">hygiuy</td>
 
-                <td class="text-end">rthyytj</td>
-                <td>fdgfdgfdg_level_name</td>
-                <td>fdgfdgfdg</td>
+                <td class="text-center">{{str_replace('_', ' ', Str::title($appointment->status))}}</td>
 
-                <td>sdfvnj uuu</td>
+                <td class="text-center">{{$appointment->user['patient_id']}}</td>
+                <td class="text-center">{{$appointment->user['name']}}</td>
+                <td class="text-center">{{$appointment->testType['test_type']}}</td>
 
-                <td>fdg</td>
-                <td>dsf</td>
+                @if($appointment->date == null)
+                <td>Not Assigned</td>
+                @else
+                <td class="text-center">{{$appointment->date}}</td>
+                @endif
 
-                <td>dsfdsdsvcdf</td>
+                @if($appointment->time == null)
+                <td>Not Assigned</td>
+                @else
+                <td class="text-center">{{$appointment->time}}</td>
+                @endif
 
-
-                <td>erwwef</td>
-                <td>sdsd</td>
-
-                <td><button type="button" class="btn btn-primary">Edit</button></td>
-                <td><button type="button" class="btn btn-primary">Enable/Disable</button></td>
-                <td><a href="" class="btn btn-primary">View</a></td>
+                @if($appointment->doctor_id == null)
+                <td>Not Assigned</td>
+                @else
+                <td class="text-center">{{$appointment->doctor['name']}}</td>
+                @endif
             </tr>
+            @endforeach
         </tbody>
     </table>
 
