@@ -54,6 +54,7 @@ Route::group(['middleware' => ['auth:admins']], function () {
 
     Route::get('/appointments', [AdminController::class, 'showAppointments'])->name('admin.appointments');
     Route::get('/patients', [AdminController::class, 'showPatients'])->name('admin.patients');
+    Route::get('/patient-appointments/{user}', [AdminController::class, 'showPatientAppointments'])->name('admin.patient_appointments');
 
     Route::get('/reports', [ReportController::class, 'showReports'])->name('admin.reports');
     Route::get('/view-report/{report}', [ReportController::class, 'viewReportFile'])->name('admin.view_report');

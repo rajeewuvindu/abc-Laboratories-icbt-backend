@@ -32,7 +32,7 @@
                 <td class="text-center">{{$patient->city}}</td>
                 <td class="text-center">{{$patient->postal_code}}</td>
                 <td class="text-center">{{$patient->contact_number}}</td>
-                <td><a href="" class="btn btn-primary">View</a></td>
+                <td><a href="{{ route('admin.patient_appointments', $patient->id) }}" class="btn btn-primary">View</a></td>
             </tr>
             @endforeach
         </tbody>

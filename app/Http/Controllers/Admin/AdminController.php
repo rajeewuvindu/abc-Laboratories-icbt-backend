@@ -27,5 +27,12 @@ class AdminController extends Controller
         return view('admin-views.patients', compact('patients'));
     }
 
+    
+    public function showPatientAppointments(User $user)
+    {
+        $appointments = $user->appointments;
+        return view('admin-views.patient-appointments', compact('appointments', 'user'));
+    }
+
   
 }

@@ -28,8 +28,14 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::post('/user', [PatientController::class, 'user']);
 
+    Route::post('/make-payment', [PatientController::class, 'makePayment']);
 
     Route::post('/add-appointment', [PatientController::class, 'addAppointment']);
+    Route::get('/appointments', [PatientController::class, 'getAppointments']);
+    Route::get('/payments', [PatientController::class, 'getPayments']);
+
+    Route::get('/reports', [PatientController::class, 'getReports']);
 
     // 2|60mGny0GrXCeRFdEoSwlX2DWvE61zPMhHJWqn6rs
 });
+

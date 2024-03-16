@@ -64,6 +64,14 @@
                         </div>
                     </div>
 
+                    <div class="col-12 mt-5 mb-5">
+                        @if($appointments->count() == 0)
+                        <input class="form-control" type="text" name="price" id="price" placeholder="Price">
+                        @else
+                        <input class="form-control" type="text" name="price" id="price" placeholder="Price" value="{{ $appointment->price }}">
+                        @endif
+                    </div>
+
                     <div class="modal-footer">
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

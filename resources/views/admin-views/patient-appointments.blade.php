@@ -2,7 +2,7 @@
 @section('content')
 <div>
     <div class="col-md-10 fw-500">
-        <h1>Appointments</h1>
+        <h1>Appointments of {{ $user->name }} ({{$user->patient_id}})</h1>
     </div>
     <hr>
 
@@ -25,6 +25,7 @@
             <tr>
 
                 <td class="text-center">{{str_replace('_', ' ', Str::title($appointment->status))}}</td>
+
                 <td class="text-center">{{$appointment->user['patient_id']}}</td>
                 <td class="text-center">{{$appointment->user['name']}}</td>
                 <td class="text-center">{{$appointment->testType['test_type']}}</td>
@@ -50,7 +51,7 @@
                 <td><a href="{{ route('admin.view_report', $appointment->report->id) }}" class="btn btn-primary">View</a></td>
                 @else
                 <td><a class="btn btn-primary" disabled>View</a></td>
-                @endif
+
             </tr>
             @endforeach
         </tbody>

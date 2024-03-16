@@ -30,7 +30,9 @@
                             <input type="time" name="time" id="time" class="form-control col-12">
                         </div>
                     </div>
-
+                    <div class="col-12 mt-5 mb-5">
+                        <input class="form-control" type="text" name="price" id="price" placeholder="Price">
+                    </div>
                     <div class="modal-footer">
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -31,12 +31,12 @@
     @endif
 
 
-    <form class="row g-3" action="{{ route('technician.add_report') }}" method="post"  enctype="multipart/form-data">
+    <form class="row g-3" action="{{ route('technician.add_report') }}" method="post" enctype="multipart/form-data">
         {{csrf_field()}}
         <div class="col-md-4">
             <div class="row">
                 <div class="col-12">
-                    <label class="form-label">Select Doctor</label>
+                    <label class="form-label">Select User</label>
                     <select class="form-select" name="user_id" id="user_id" required>
                         <option selected disabled value="">Choose...</option>
                         @foreach($patients as $patient)
@@ -44,6 +44,17 @@
                             {{$patient->name}}
                         </option>
                         @endforeach
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="row">
+                <div class="col-12">
+                    <label class="form-label">Select Appointment</label>
+                    <select class="form-select" name="appointment_id" id="appointment_id" required>
+                        <option selected disabled value="">Choose...</option>
                     </select>
                 </div>
             </div>

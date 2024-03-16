@@ -30,6 +30,9 @@ Route::group(['middleware' => ['auth:technicians']], function () {
     Route::post('/assign-doctor', [AppointmentController::class, 'assignDoctor'])->name('technician.assign_doctor');
     Route::get('/complete-appointment/{appointment}', [AppointmentController::class, 'completeAppointment'])->name('technician.complete_appointment');
 
+
+    Route::get('/fetch-user-appointments/{user}', [AppointmentController::class, 'fetchUserAppointments']);
+
     Route::get('/doctors', [DoctorController::class, 'showDoctors'])->name('technician.doctors');
 
     

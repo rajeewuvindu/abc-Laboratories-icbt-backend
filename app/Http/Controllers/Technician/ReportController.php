@@ -35,6 +35,7 @@ class ReportController extends Controller
             $report_file = $request->file('report_file')->store('patient_report_files');
             $report = new Report();
             $report->user()->associate($request->user_id);
+            $report->appointment()->associate($request->appointment_id);
             $report->file_path = $report_file;
             $report->save();
 
