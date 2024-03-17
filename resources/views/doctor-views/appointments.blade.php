@@ -1,11 +1,34 @@
-@extends('admin-views.layouts.app')
+@extends('doctor-views.layouts.app')
 @section('content')
 <div>
     <div class="col-md-10 fw-500">
-        <h1>Appointments of {{ $user->name }} ({{$user->patient_id}})</h1>
+        <h1>Appointments</h1>
     </div>
     <hr>
 
+    @if(session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+    @if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+
+    @if($errors->any())
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
     <table id="table" data-toolbar="#toolbar" data-filter-control="true" data-toggle="table" data-toolbar="#toolbar" data-height="600" data-pagination="true" data-search="true" class="text-center">
 
         <thead>
@@ -16,8 +39,6 @@
                 <th data-sortable="true" data-field="test_type" data-filter-control="input">Test Type</th>
                 <th data-sortable="true" data-field="date" data-filter-control="input">Date</th>
                 <th data-sortable="true" data-field="time" data-filter-control="input">Time</th>
-                <th data-sortable="true" data-field="doctor" data-filter-control="input">Doctor Assigned</th>
-                <th>Report</th>
             </tr>
         </thead>
         <tbody>
@@ -42,16 +63,6 @@
                 <td class="text-center">{{$appointment->time}}</td>
                 @endif
 
-                @if($appointment->doctor_id == null)
-                <td>Not Assigned</td>
-                @else
-                <td class="text-center">{{$appointment->doctor['name']}}</td>
-                @endif
-                @if($appointment->report)
-                <td><a href="{{ route('admin.view_report', $appointment->report->id) }}" class="btn btn-primary">View</a></td>
-                @else
-                <td><a class="btn btn-primary" disabled>View</a></td>
-                @endif
             </tr>
             @endforeach
         </tbody>

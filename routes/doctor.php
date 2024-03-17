@@ -18,8 +18,9 @@ Route::post('/password/reset', [ResetPasswordController::class, 'reset'])->name(
 // Route::post('/logout', [LoginController::class, 'logout'])->name('admin.logout');
 
 
-Route::group(['middleware' => ['auth:admins']], function () {
+Route::group(['middleware' => ['auth:doctors']], function () {
     Route::post('/logout', [LoginController::class, 'logout'])->name('doctor.logout');
 
-    Route::get('/', [DoctorController::class, 'index'])->name('doctor.users');
+    Route::get('/', [DoctorController::class, 'showAppointments'])->name('doctor.appointments');
+    // Route::get('/', [DoctorController::class, 'index'])->name('doctor.users');
 });

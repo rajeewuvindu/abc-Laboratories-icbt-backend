@@ -2,13 +2,14 @@
 
 namespace App\Services;
 
+use App\Models\Payment;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use Illuminate\Support\Facades\Storage;
 
 class InvoicePdfGenerator
 {
-    public static function generateInvoice($data)
+    public static function generateInvoice($data, $payment)
     {
         $dompdf = new Dompdf();
         $dompdf->loadHtml(view('view-invoice', $data));
@@ -19,9 +20,14 @@ class InvoicePdfGenerator
 
         // Store the PDF in the storage
         $fileName = 'invoice_' . uniqid() . '.pdf';
-        Storage::put('invoices/' . $fileName, $pdfContent);
+        $invoice_file = Storage::put('invoices/' . $fileName, $pdfContent);
+
+        $payment_data = Payment::find($payment->id);
+        $payment_data->invoice_path = 'invoices/' . $fileName;
+        // $payment_data->invoice_path = $invoice_file;
+        $payment_data->save();
 
         // Return the file path for further use
-        return $fileName;
+        return $invoice_file;
     }
 }

@@ -20,12 +20,21 @@ class PatientController extends Controller
         return $request->user();
     }
 
+    public function checkLogin(Request $request)
+    {
+        return $request->user();
+    }
+
     public function addAppointment(Request $request)
     {
         $appointment = new Appointment();
 
         $appointment->user()->associate($request->user()->id);
         $appointment->testType()->associate($request->test_type_id);
+
+        // $appointment->age = $request->age;
+        // $appointment->name = $request->name;
+        // $appointment->gender = $request->gender;
         $appointment->status = 'pending_confirmation';
 
         $appointment->save();
@@ -61,10 +70,18 @@ class PatientController extends Controller
         foreach ($payments as $payment) {
             $appointment = Appointment::find($payment->appointment_id);
             $appointment_test_type = $appointment->testType->test_type;
+            $file_path = env('HOST_URL');
+            $file = "";
+            $invoice_file = $payment->invoice_path;
+
+            if (Storage::exists($invoice_file)) {
+                $file = Storage::url($invoice_file);
+            }
             $payments_array[] = [
                 "appointment_id" =>  Str::padLeft($payment->appointment_id, 7, 0),
                 "test_type" => $appointment_test_type,
                 "amount" => $payment->amount,
+                'invoice_file' => $file_path . $file,
                 "created_at" => $payment->created_at,
             ];
         }
@@ -120,14 +137,15 @@ class PatientController extends Controller
         ];
 
         // Generate PDF
-        $pdf = InvoicePdfGenerator::generateInvoice($invoiceData);
+        InvoicePdfGenerator::generateInvoice($invoiceData, $payment);
         // $report_file = $request->file($pdf)->store('pdfs');
+
 
         // Save or serve PDF as needed
         // For example, serve as download
-        return response()->streamDownload(function () use ($pdf) {
-            echo $pdf;
-        }, 'invoice.pdf');
+        // return response()->streamDownload(function () use ($pdf) {
+        //     echo $pdf;
+        // }, 'invoice.pdf');
 
 
         if ($payment && $appointment) {

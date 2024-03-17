@@ -18,6 +18,7 @@ class CreatePaymentsTable extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('appointment_id');
             $table->decimal('amount');
+            $table->string('invoice_path');
             $table->timestamps();
         });
     }

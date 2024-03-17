@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\RegistrationConfirmationMail;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserLogin;
@@ -17,6 +18,7 @@ use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\PasswordReset;
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class AuthController extends Controller
@@ -68,8 +70,9 @@ class AuthController extends Controller
 
 
         $token = $user->createToken('myapptoken')->plainTextToken;
+        Mail::to($user->email)->send(new RegistrationConfirmationMail($user, $user->patient_id));
 
-        
+
 
         $response = [
             'user' => $user,
