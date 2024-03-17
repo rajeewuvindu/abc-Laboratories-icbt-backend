@@ -7,6 +7,7 @@ use App\Models\Payment;
 use App\Models\Report;
 use App\Models\Technician;
 use App\Models\User;
+use App\Services\InvoicePdfGenerator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
@@ -107,6 +108,27 @@ class PatientController extends Controller
         $appointment = Appointment::find($request->id);
         $appointment->status = 'paid';
         $appointment->save();
+
+        $invoiceData = [
+            'appointmentId' => Str::padLeft($appointment->id, 7, 0),
+            'testType' => $appointment->TestType->test_type,
+            'appointmentDate' => $appointment->date,
+            'paymentDate' => $payment->created_at,
+            'doctorAssigned' => $appointment->doctor->name,
+            'patientId' => $request->user()->patient_id,
+            'patientName' => $request->user()->name,
+        ];
+
+        // Generate PDF
+        $pdf = InvoicePdfGenerator::generateInvoice($invoiceData);
+        // $report_file = $request->file($pdf)->store('pdfs');
+
+        // Save or serve PDF as needed
+        // For example, serve as download
+        return response()->streamDownload(function () use ($pdf) {
+            echo $pdf;
+        }, 'invoice.pdf');
+
 
         if ($payment && $appointment) {
             return response([
