@@ -36,6 +36,9 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::get('/reports', [PatientController::class, 'getReports']);
 
+    Route::get('/test-types', [PatientController::class, 'getTestTypes']);
+
+
     // 2|60mGny0GrXCeRFdEoSwlX2DWvE61zPMhHJWqn6rs
 });
 

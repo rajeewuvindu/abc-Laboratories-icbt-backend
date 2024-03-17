@@ -6,6 +6,7 @@ use App\Models\Appointment;
 use App\Models\Payment;
 use App\Models\Report;
 use App\Models\Technician;
+use App\Models\TestType;
 use App\Models\User;
 use App\Services\InvoicePdfGenerator;
 use Illuminate\Http\Request;
@@ -51,7 +52,13 @@ class PatientController extends Controller
         //     // $technician->email;
         // }
 
-        return $request->user();
+        // return $request->user();
+
+        if ($appointment) {
+            return response([
+                'message' => 'Appointment Added Successfully.'
+            ], 201);
+        }
     }
 
     public function getAppointments(Request $request)
@@ -167,5 +174,11 @@ class PatientController extends Controller
         // }
 
         // return $request->user();
+    }
+
+    public function getTestTypes(Request $request)
+    {
+        $test_types = TestType::all();
+        return $test_types;
     }
 }
