@@ -5,6 +5,31 @@
         <h1>Test Types</h1>
     </div>
     <hr>
+
+    @if(session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+    @if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+
+    @if($errors->any())
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+
     <div id="toolbar">
         <a href="{{ route('admin.add_test_type_form') }}"><button class="btn btn-primary" id="">Add Test Type</button></a>
     </div>
@@ -30,10 +55,14 @@
                 <td class="text-center text-danger fw-bolder">{{str_replace('_', ' ', Str::title($test_type->status))}}</td>
                 @else
                 <td class="text-center text-success fw-bolder">{{str_replace('_', ' ', Str::title($test_type->status))}}</td>
-                @endif 
-
+                @endif
+                @if($test_type->status == "active")
                 <td><a href="{{ route('admin.edit_test_type_form', $test_type->id) }}" class="btn btn-primary">Edit</a></td>
                 <td><a href="{{ route('admin.remove_test_type', $test_type->id) }}" class="btn btn-primary">Delete</a></td>
+                @else
+                <td><a class="btn btn-secondary" disabled>Edit</a></td>
+                <td><a class="btn btn-secondary" disabled>Delete</a></td>
+                @endif
             </tr>
             @endforeach
 

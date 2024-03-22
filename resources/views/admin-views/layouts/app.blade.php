@@ -23,7 +23,7 @@
 
 </head>
 
-<body style="padding-top: 56px;">
+<body>
 
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="guage" viewBox="0 0 16 16">
@@ -53,226 +53,108 @@
             <path d="M5 1a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1a1 1 0 0 1 1 1v4h3a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h3V3a1 1 0 0 1 1-1zm2 14h2v-3H7zm3 0h1V3H5v12h1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1zm0-14H6v1h4zm2 7v7h3V8zm-8 7V8H1v7z" />
         </symbol>
 
+        <symbol id="logout" viewBox="0 0 16 16">
+            <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1" />
+            <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117M11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5M4 1.934V15h6V1.077z" />
+        </symbol>
+
+
     </svg>
 
     <div id="app">
-        <!-- Navbar Only after Authentication -->
-        <!-- No Navbar if not authenticated -->
-        <!-- <div class="row justify-content-center py-5">
-                    <img src="{{ asset('images/fentons_logo.svg') }}" alt="fentons_logo" height="100vh">
-                </div> -->
-
-        <div>
-            <nav class="navbar navbar-expand-sm navbar-light bg-white shadow-sm" style="position: fixed; width: 100%; top: 0; z-index: 102;">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav me-auto">
-
-                        </ul>
-
-                        <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ms-auto">
-                            <!-- Authentication Links -->
-                            @guest
-                            @if (Route::has('login'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            </li>
-                            @endif
-                            @else
-
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('admin.logout') }}" onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                            @endguest
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
-
-        <!-- 
-        <div class="row" id="myFlexContainer" style="width: 100%;">
-            <div class="navbar navbar-expand-lg navbar-light shadow-sm d-flex flex-column vh-100" style="width: auto;">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidenavbarSupportedContent" aria-controls="sidenavbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="sidenavbarSupportedContent" style="width: auto;">
-                    <ul class="nav flex-column mb-auto hover-nav">
-                        <li>
-                            <a href="" class="nav-link link-dark">
-                                <svg class="bi me-2" width="16" height="16">
-                                    <use xlink:href="#people-circle" />
-                                </svg>
-                                Users
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="nav-link link-dark">
-                                <svg class="bi me-2" width="16" height="16">
-                                    <use xlink:href="#cashier" />
-                                </svg>
-                                Cashier
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class=" nav-link link-dark">
-                                <svg class="bi me-2" width="16" height="16">
-                                    <use xlink:href="#department" />
-                                </svg>
-                                Department
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class=" nav-link link-dark">
-                                <svg class="bi me-2" width="16" height="16">
-                                    <use xlink:href="#cost_center" />
-                                </svg>
-                                Cost Centers
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="nav-link link-dark">
-                                <svg class="bi me-2" width="16" height="16">
-                                    <use xlink:href="#bank" />
-                                </svg>
-                                Banks
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="nav-link link-dark">
-                                <svg class="bi me-2" width="16" height="16">
-                                    <use xlink:href="#authorization-levels" />
-                                </svg>
-                                Authorization Levels
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="nav-link link-dark">
-                                <svg class="bi me-2" width="16" height="16">
-                                    <use xlink:href="#Categories" />
-                                </svg>
-                                Categories
-                            </a>
-                        </li>
-                        <li>
-                            <a href="" class="nav-link link-dark">
-                                <svg class="bi me-2" width="16" height="16">
-                                    <use xlink:href="#project" />
-                                </svg>
-                                Projects
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-
-            <main class="col py-4" style="width: 76%;">
-                @yield('content')
-            </main>
-            @guest('admins')
-            <div>
-                <main class="col py-4">
-                    @yield('content')
-                </main>
-            </div>
-            @endguest
-        </div> -->
         <div class="container-fluid" style="padding-top: 0px; position:fixed">
             <div class="row flex-nowrap">
                 @auth('admins')
                 <div class="bg-dark col-auto col-md-4 col-lg-2 min-vh-100 d-flex flex-column justify-content-between">
+
                     <div class="bg-dark p-2">
+                        <a class="navbar-brand text-white  d-flex  justify-content-center fw-bolder" href="{{ url('/admin') }}">
+                            <span class="fs-4 d-sm-inline ms-2 text-white">ABC LABS</span>
+                        </a>
+                        <div class="d-flex justify-content-center">
+                            <div class="ms-2 d-flex justify-content-center">
+                                <div class="rounded-circle d-flex justify-content-center">
+                                    <div class="rounded-circle">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="#F9F9F9" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center h3 font-family mt-2 admin-name text-white">{{auth()->user()->name}}</div>
+
                         <ul class="nav nav-pills flex-column mt-4">
-                            <li class="nav-item py-2 py-sm-0">
+                            <li class="nav-item py-2 py-sm-0 nav_hover  @if(request()->routeIs('admin.dashboard')) active mb-1 mt-1 @endif">
                                 <a href="{{route('admin.dashboard')}}" class="nav-link text-white d-flex align-items-center">
-                                    <svg class="bi me-2" width="30" height="40" fill="#FFFFFF">
+                                    <svg class="bi me-2" width="24" height="40" fill="#FFFFFF">
                                         <use xlink:href="#guage" />
                                     </svg>
                                     <span class="fs-4 d-none d-sm-inline ms-2">Dashboard</span>
                                 </a>
                             </li>
 
-                            <div class="nav-item py-2 py-sm-0">
+                            <div class="nav-item py-2 py-sm-0 nav_hover @if(request()->routeIs('admin.appointments')) active mb-1 mt-1 @endif">
                                 <a href="{{route('admin.appointments')}}" class="nav-link  d-flex align-items-center">
-                                    <svg class="bi me-2" width="30" height="40" fill="#FFFFFF">
+                                    <svg class="bi me-2" width="24" height="40" fill="#FFFFFF">
                                         <use xlink:href="#home" />
                                     </svg>
-                                    <span class="fs-4 d-none d-sm-inline ms-2">Appointments</span>
+                                    <span class="fs-4 d-none d-sm-inline ms-2 text-white">Appointments</span>
                                 </a>
                             </div>
 
-                            <div class="nav-item py-2 py-sm-0">
+                            <div class="nav-item py-2 py-sm-0 nav_hover  @if(request()->routeIs('admin.test_types')) active mb-1 mt-1 @endif">
                                 <a href="{{route('admin.test_types')}}" class="nav-link d-flex align-items-center">
-                                    <svg class="bi me-2" width="30" height="40" fill="#FFFFFF">
+                                    <svg class="bi me-2" width="24" height="40" fill="#FFFFFF">
                                         <use xlink:href="#doctors" />
                                     </svg>
-                                    <span class="fs-4 d-none d-sm-inline ms-2">Test Types</span>
+                                    <span class="fs-4 d-none d-sm-inline ms-2 text-white">Test Types</span>
                                 </a>
                             </div>
 
-                            <div class="nav-item py-2 py-sm-0">
+                            <div class="nav-item py-2 py-sm-0 nav_hover  @if(request()->routeIs('admin.patients')) active mb-1 mt-1 @endif">
                                 <a href="{{route('admin.patients')}}" class="nav-link d-flex align-items-center">
-                                    <svg class="bi me-2" width="30" height="40" fill="#FFFFFF">
+                                    <svg class="bi me-2" width="24" height="40" fill="#FFFFFF">
                                         <use xlink:href="#users" />
                                     </svg>
-                                    <span class="fs-4 d-none d-sm-inline ms-2">Patients</span>
+                                    <span class="fs-4 d-none d-sm-inline ms-2 text-white">Patients</span>
                                 </a>
                             </div>
 
-                            <div class="nav-item py-2 py-sm-0">
+                            <div class="nav-item py-2 py-sm-0 nav_hover  @if(request()->routeIs('admin.technicians')) active mb-1 mt-1 @endif">
                                 <a href="{{route('admin.technicians')}}" class="nav-link d-flex align-items-center">
-                                    <svg class="bi me-2" width="30" height="40" fill="#FFFFFF">
+                                    <svg class="bi me-2" width="24" height="40" fill="#FFFFFF">
                                         <use xlink:href="#technicians" />
                                     </svg>
-                                    <span class="fs-4 d-none d-sm-inline ms-2">Technicians</span>
+                                    <span class="fs-4 d-none d-sm-inline ms-2 text-white">Technicians</span>
                                 </a>
                             </div>
 
-                            <div class="nav-item py-2 py-sm-0">
+                            <div class="nav-item py-2 py-sm-0 nav_hover  @if(request()->routeIs('admin.doctors')) active mt-1 @endif">
                                 <a href="{{route('admin.doctors')}}" class="nav-link d-flex align-items-center">
-                                    <svg class="bi me-2" width="30" height="40" fill="#FFFFFF">
+                                    <svg class="bi me-2" width="24" height="40" fill="#FFFFFF">
                                         <use xlink:href="#doctors" />
                                     </svg>
-                                    <span class="fs-4 d-none d-sm-inline ms-2">Doctors</span>
+                                    <span class="fs-4 d-none d-sm-inline ms-2 text-white ">Doctors</span>
                                 </a>
                             </div>
+                            <div class="col-12 nav-item py-2 py-sm-0 nav_hover">
 
-                            <!-- <div class="nav-item py-2 py-sm-0">
-                                <a href="{{route('admin.reports')}}" class="nav-link d-flex align-items-center">
-                                    <svg class="bi me-2" width="30" height="40" fill="#FFFFFF">
-                                        <use xlink:href="#reports" />
+                                <a class="nav-link d-flex align-items-center" href="{{ route('admin.logout') }}" onclick="event.preventDefault();
+                                     
+                                     document.getElementById('logout-form').submit();">
+                                    <svg class="bi me-2" width="24" height="40" fill="#FFFFFF">
+                                        <use xlink:href="#logout" />
                                     </svg>
-                                    <span class="fs-4 d-none d-sm-inline ms-2">Reports</span>
+                                    <span class="fs-4 d-none d-sm-inline ms-2 text-white ">Logout</span>
                                 </a>
-                            </div> -->
+
+                                <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+
                         </ul>
                     </div>
                 </div>

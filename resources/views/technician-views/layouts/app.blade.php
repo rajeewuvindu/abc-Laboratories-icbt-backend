@@ -23,7 +23,7 @@
 
 </head>
 
-<body style="padding-top: 56px;">
+<body>
 
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
         <symbol id="guage" viewBox="0 0 16 16">
@@ -52,6 +52,11 @@
             <path d="M8.5 5.034v1.1l.953-.55.5.867L9 7l.953.55-.5.866-.953-.55v1.1h-1v-1.1l-.953.55-.5-.866L7 7l-.953-.55.5-.866.953.55v-1.1zM13.25 9a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25zM13 11.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zm.25 1.75a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25zm-11-4a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5A.25.25 0 0 0 3 9.75v-.5A.25.25 0 0 0 2.75 9zm0 2a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25zM2 13.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25z" />
             <path d="M5 1a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1a1 1 0 0 1 1 1v4h3a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h3V3a1 1 0 0 1 1-1zm2 14h2v-3H7zm3 0h1V3H5v12h1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1zm0-14H6v1h4zm2 7v7h3V8zm-8 7V8H1v7z" />
         </symbol>
+        <symbol id="logout" viewBox="0 0 16 16">
+            <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1" />
+            <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117M11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5M4 1.934V15h6V1.077z" />
+        </symbol>
+
 
     </svg>
 
@@ -62,101 +67,78 @@
                     <img src="{{ asset('images/fentons_logo.svg') }}" alt="fentons_logo" height="100vh">
                 </div> -->
 
-        <div>
-            <nav class="navbar navbar-expand-sm navbar-light bg-white shadow-sm" style="position: fixed; width: 100%; top: 0; z-index: 102;">
-                <div class="container-fluid">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav me-auto">
-
-                        </ul>
-
-                        <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav ms-auto">
-                            <!-- Authentication Links -->
-                            @guest
-                            @if (Route::has('login'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                            </li>
-                            @endif
-                            @else
-
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('technician.logout') }}" onclick="event.preventDefault();
-                                                        document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('technician.logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                            @endguest
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-        </div>
 
         <div class="container-fluid" style="padding-top: 0px; position:fixed">
             <div class="row flex-nowrap">
                 @auth('technicians')
                 <div class="bg-dark col-auto col-md-4 col-lg-2 min-vh-100 d-flex flex-column justify-content-between">
                     <div class="bg-dark p-2">
+                        <a class="navbar-brand text-white  d-flex  justify-content-center fw-bolder" href="{{ url('/admin') }}">
+                            <span class="fs-4 d-sm-inline ms-2 text-white">ABC LABS</span>
+                        </a>
+                        <div class="d-flex justify-content-center">
+                            <div class="ms-2 d-flex justify-content-center">
+                                <div class="rounded-circle d-flex justify-content-center">
+                                    <div class="rounded-circle">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="#F9F9F9" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+                                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center h3 font-family mt-2 admin-name text-white">{{auth()->user()->name}}</div>
+
                         <ul class="nav nav-pills flex-column mt-4">
-                            <div class="nav-item py-2 py-sm-0">
+                            <div class="nav-item py-2 py-sm-0 nav_hover  @if(request()->routeIs('technician.appointments')) active mb-1 mt-1 @endif">
                                 <a href="{{route('technician.appointments')}}" class="nav-link  d-flex align-items-center">
                                     <svg class="bi me-2" width="30" height="40" fill="#FFFFFF">
                                         <use xlink:href="#home" />
                                     </svg>
-                                    <span class="fs-4 d-none d-sm-inline ms-2">Appointments</span>
+                                    <span class="fs-4 d-none d-sm-inline ms-2 text-white">Appointments</span>
                                 </a>
                             </div>
 
-                            <div class="nav-item py-2 py-sm-0">
+                            <div class="nav-item py-2 py-sm-0 nav_hover  @if(request()->routeIs('technician.patients')) active mb-1 mt-1 @endif">
                                 <a href="{{route('technician.patients')}}" class="nav-link d-flex align-items-center">
                                     <svg class="bi me-2" width="30" height="40" fill="#FFFFFF">
                                         <use xlink:href="#users" />
                                     </svg>
-                                    <span class="fs-4 d-none d-sm-inline ms-2">Patients</span>
+                                    <span class="fs-4 d-none d-sm-inline ms-2 text-white">Patients</span>
                                 </a>
                             </div>
-                            <div class="nav-item py-2 py-sm-0">
+                            <div class="nav-item py-2 py-sm-0 nav_hover  @if(request()->routeIs('technician.doctors')) active mb-1 mt-1 @endif">
                                 <a href="{{route('technician.doctors')}}" class="nav-link d-flex align-items-center">
                                     <svg class="bi me-2" width="30" height="40" fill="#FFFFFF">
                                         <use xlink:href="#doctors" />
                                     </svg>
-                                    <span class="fs-4 d-none d-sm-inline ms-2">Doctors</span>
+                                    <span class="fs-4 d-none d-sm-inline ms-2 text-white">Doctors</span>
                                 </a>
                             </div>
 
-                            <div class="nav-item py-2 py-sm-0">
+                            <div class="nav-item py-2 py-sm-0 nav_hover  @if(request()->routeIs('technician.reports')) active mb-1 mt-1 @endif">
                                 <a href="{{route('technician.reports')}}" class="nav-link d-flex align-items-center">
                                     <svg class="bi me-2" width="30" height="40" fill="#FFFFFF">
                                         <use xlink:href="#reports" />
                                     </svg>
-                                    <span class="fs-4 d-none d-sm-inline ms-2">Reports</span>
+                                    <span class="fs-4 d-none d-sm-inline ms-2 text-white">Reports</span>
                                 </a>
+                            </div>
+
+                            <div class="col-12 nav-item py-2 py-sm-0 nav_hover">
+
+                                <a class="nav-link d-flex align-items-center" href="{{ route('technician.logout') }}" onclick="event.preventDefault();
+     document.getElementById('logout-form').submit();">
+                                    <svg class="bi me-2" width="24" height="40" fill="#FFFFFF">
+                                        <use xlink:href="#logout" />
+                                    </svg>
+                                    <span class="fs-4 d-none d-sm-inline ms-2 text-white ">Logout</span>
+                                </a>
+
+                                <form id="logout-form" action="{{ route('technician.logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
                             </div>
                         </ul>
                     </div>

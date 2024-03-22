@@ -5,6 +5,31 @@
         <h1>Doctors</h1>
     </div>
     <hr>
+
+    @if(session('error'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+    @if(session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+
+    @if($errors->any())
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <ul>
+            @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
+
     <div id="toolbar">
         <a href="{{ route('admin.add_doctor_form') }}"><button class="btn btn-primary" id="">Add Doctor</button></a>
     </div>
@@ -30,7 +55,7 @@
                 <td class="text-center text-danger fw-bolder">{{str_replace('_', ' ', Str::title($doctor->status))}}</td>
                 @else
                 <td class="text-center text-success fw-bolder">{{str_replace('_', ' ', Str::title($doctor->status))}}</td>
-                @endif 
+                @endif
                 <td><a href="{{ route('admin.edit_doctor_form', $doctor->id) }}" class="btn btn-primary">Edit</a></td>
                 <td><a href="{{ route('admin.remove_doctor', $doctor->id) }}" class="btn btn-primary">Delete</a></td>
             </tr>
