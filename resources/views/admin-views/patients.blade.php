@@ -18,7 +18,7 @@
                 <th data-sortable="true" data-field="city" data-filter-control="input">City</th>
                 <th data-sortable="true" data-field="postal_code" data-filter-control="input">Postal Code</th>
                 <th data-sortable="true" data-field="phone" data-filter-control="input">Phone</th>
-                <th>View Details</th>
+                <th>View Appointments</th>
             </tr>
         </thead>
         <tbody>

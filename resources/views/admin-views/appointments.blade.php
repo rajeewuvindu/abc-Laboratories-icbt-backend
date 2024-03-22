@@ -49,7 +49,7 @@
                 @if($appointment->report)
                 <td><a href="{{ route('admin.view_report', $appointment->report->id) }}" class="btn btn-primary">View</a></td>
                 @else
-                <td><a class="btn btn-primary" disabled>View</a></td>
+                <td><a class="btn btn-primary" disabled>No report</a></td>
                 @endif
             </tr>
             @endforeach

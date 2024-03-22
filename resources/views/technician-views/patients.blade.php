@@ -18,7 +18,6 @@
                 <th data-sortable="true" data-field="city" data-filter-control="input">City</th>
                 <th data-sortable="true" data-field="postal_code" data-filter-control="input">Postal Code</th>
                 <th data-sortable="true" data-field="phone" data-filter-control="input">Phone</th>
-                <th>View Details</th>
 
             </tr>
         </thead>
@@ -35,7 +34,6 @@
                 <td class="text-center">{{$patient->city}}</td>
                 <td class="text-center">{{$patient->postal_code}}</td>
                 <td class="text-center">{{$patient->contact_number}}</td>
-                <td><a href="" class="btn btn-primary">View</a></td>
             </tr>
             @endforeach
         </tbody>

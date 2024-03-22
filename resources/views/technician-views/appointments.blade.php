@@ -44,7 +44,6 @@
                 <th data-sortable="true" data-field="doctor" data-filter-control="input">Doctor Assigned</th>
                 <th>Assign to Doctor</th>
                 <th>Mark as Completed</th>
-                <th>View Details</th>
             </tr>
         </thead>
         <tbody>
@@ -82,7 +81,6 @@
                 @endif
 
                 <td><a href="{{ route('technician.complete_appointment', $appointment->id) }}" class="btn btn-primary">Mark as Completed</a></td>
-                <td><a href="" class="btn btn-primary">View</a></td>
             </tr>
             @endforeach
         </tbody>

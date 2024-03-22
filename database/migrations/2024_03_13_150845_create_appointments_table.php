@@ -18,6 +18,7 @@ class CreateAppointmentsTable extends Migration
             $table->bigInteger('user_id');
             $table->bigInteger('test_type_id');
             $table->string('status');
+            $table->integer('age');
             $table->date('date')->nullable();
             $table->time('time')->nullable();
             $table->bigInteger('doctor_id')->nullable();

@@ -40,12 +40,18 @@ class AuthController extends Controller
         $fields = $request->all(); // shortcut due to long validation list
         // return $request->headers;
 
+        $user = User::all();
+        if ($user->isNotEmpty()) {
+            $id = User::orderBy('id', 'desc')->first()->id;
+        } else {
+            $id = 1;
+        }
 
         // $patient_uuid = Str::uuid('P' . ++$id);
         $user = new User();
         $user->name = $fields['name'];
         //    $user->patient_id = 0;
-        $user->patient_id =  Str::padLeft($user->id, 7, 0);
+        $user->patient_id =  Str::padLeft(++$id, 7, 0);
         $user->email = $fields['email'];
         $user->street_code = $fields['street_code'];
         $user->street = $fields['street'];
@@ -71,7 +77,6 @@ class AuthController extends Controller
 
         $token = $user->createToken('myapptoken')->plainTextToken;
         Mail::to($user->email)->send(new RegistrationConfirmationMail($user, $user->patient_id));
-
 
 
         $response = [

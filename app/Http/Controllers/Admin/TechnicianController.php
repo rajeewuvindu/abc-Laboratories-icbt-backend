@@ -75,7 +75,7 @@ class TechnicianController extends Controller
     }
 
     public function removeTechnician(Technician $technician)
-    {
+    { 
         if ($technician) {
             $technician->status = 'status';
             $technician->save();

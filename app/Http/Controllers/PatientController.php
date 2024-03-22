@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\PaymentConfirmationMail;
 use App\Models\Appointment;
 use App\Models\Payment;
 use App\Models\Report;
@@ -21,6 +22,50 @@ class PatientController extends Controller
         return $request->user();
     }
 
+
+    public function updateProfile(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|string|email',
+            'name' => 'required|string',
+            'street_code' => 'required|string',
+            'street' => 'required|string',
+            'city' => 'required|string',
+            'postal_code' => 'required|string',
+            'contact_number' => 'required|string',
+            'gender' => 'required|string',
+        ]);
+
+
+        $user = User::find($request->id);
+
+        if ($request->email != $user->email) {
+            $duplicates = User::where('email', $request->email)->count();
+
+            if ($duplicates > 0) {
+                return response([
+                    'message' => 'Email already exists.'
+                ], 403);
+            }
+        }
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->street_code = $request->street_code;
+        $user->street = $request->street;
+        $user->city = $request->city;
+        $user->postal_code = $request->postal_code;
+        $user->contact_number = $request->contact_number;
+        $user->gender = $request->gender;
+        $user->save();
+
+        if ($user) {
+            return response([
+                'message' => 'Changes Saved Successfully.'
+            ], 200);
+        }
+    }
+
     public function checkLogin(Request $request)
     {
         return $request->user();
@@ -33,7 +78,7 @@ class PatientController extends Controller
         $appointment->user()->associate($request->user()->id);
         $appointment->testType()->associate($request->test_type_id);
 
-        // $appointment->age = $request->age;
+        $appointment->age = $request->age;
         // $appointment->name = $request->name;
         // $appointment->gender = $request->gender;
         $appointment->status = 'pending_confirmation';
@@ -144,7 +189,7 @@ class PatientController extends Controller
         ];
 
         // Generate PDF
-        InvoicePdfGenerator::generateInvoice($invoiceData, $payment);
+        InvoicePdfGenerator::generateInvoice($invoiceData, $payment, $request->user());
         // $report_file = $request->file($pdf)->store('pdfs');
 
 
@@ -160,20 +205,6 @@ class PatientController extends Controller
                 'message' => 'Payment Done Successfull.'
             ], 200);
         }
-        // return $payment;
-        // $technicians = Technician::all();
-
-        // foreach ($technicians as $technician) {
-        //     $data = array('name' => "Virat Gandhi");
-
-        //     Mail::send(['text' => 'mail'], $data, function ($message) {
-        //         $message->to('uvindutharinda@gmail.com', 'Tutorials Point')->subject('Laravel Basic Testing Mail');
-        //         $message->from('uvindutharinda@gmail.com', 'Virat Gandhi');
-        //     });
-        //     // $technician->email;
-        // }
-
-        // return $request->user();
     }
 
     public function getTestTypes(Request $request)

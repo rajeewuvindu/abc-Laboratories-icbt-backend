@@ -120,6 +120,7 @@
 
         <div class="container-fluid" style="padding-top: 0px; position:fixed">
             <div class="row flex-nowrap">
+                @auth('technicians')
                 <div class="bg-dark col-auto col-md-4 col-lg-2 min-vh-100 d-flex flex-column justify-content-between">
                     <div class="bg-dark p-2">
                         <ul class="nav nav-pills flex-column mt-4">
@@ -160,6 +161,7 @@
                         </ul>
                     </div>
                 </div>
+                @endauth
                 <main class="col py-4" style="width: 76%;">
                     @yield('content')
                 </main>

@@ -205,9 +205,9 @@
             </div>
             @endguest
         </div> -->
-
         <div class="container-fluid" style="padding-top: 0px; position:fixed">
             <div class="row flex-nowrap">
+                @auth('admins')
                 <div class="bg-dark col-auto col-md-4 col-lg-2 min-vh-100 d-flex flex-column justify-content-between">
                     <div class="bg-dark p-2">
                         <ul class="nav nav-pills flex-column mt-4">
@@ -265,24 +265,24 @@
                                 </a>
                             </div>
 
-                            <div class="nav-item py-2 py-sm-0">
+                            <!-- <div class="nav-item py-2 py-sm-0">
                                 <a href="{{route('admin.reports')}}" class="nav-link d-flex align-items-center">
                                     <svg class="bi me-2" width="30" height="40" fill="#FFFFFF">
                                         <use xlink:href="#reports" />
                                     </svg>
                                     <span class="fs-4 d-none d-sm-inline ms-2">Reports</span>
                                 </a>
-                            </div>
+                            </div> -->
                         </ul>
                     </div>
                 </div>
+                @endauth
                 <main class="col py-4" style="width: 76%;">
                     @yield('content')
                 </main>
             </div>
 
         </div>
-
 
         <!-- Footer -->
         <footer class="page-footer font-small blue footer-end" style="position: fixed; width: 100%; bottom: 0;">

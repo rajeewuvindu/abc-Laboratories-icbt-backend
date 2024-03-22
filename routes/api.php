@@ -24,9 +24,12 @@ Route::post('/password/email', [AuthController::class, 'sendResetLinkEmail'])->n
 
 
 Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+
     Route::get('/check-login', [PatientController::class, 'checkLogin']);
 
-    // Route::post('/user', [PatientController::class, 'user']);
+    Route::get('/user', [PatientController::class, 'user']);
+    Route::post('/update-profile', [PatientController::class, 'updateProfile']);
 
     Route::post('/make-payment', [PatientController::class, 'makePayment']);
 

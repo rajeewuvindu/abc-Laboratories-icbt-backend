@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Appointment;
+use App\Models\Doctor;
+use App\Models\Payment;
 use App\Models\Report;
+use App\Models\Technician;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -12,7 +15,13 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('admin-views.dashboard');
+        $appointments = Appointment::all();
+        $users = User::all();
+        $technicians = Technician::all();
+        $doctors = Doctor::all();
+        $reports = Report::all();
+        $payments = Payment::sum('amount');
+        return view('admin-views.dashboard', compact('appointments', 'users', 'technicians', 'doctors', 'reports', 'payments'));
     }
 
     public function showAppointments()

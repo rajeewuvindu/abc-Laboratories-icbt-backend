@@ -35,7 +35,7 @@ class ResetPasswordController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::ADMIN_HOME;
+    protected $redirectTo = RouteServiceProvider::TECHNICIAN_HOME;
 
     use RedirectsUsers;
 

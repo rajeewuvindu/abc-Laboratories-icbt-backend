@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Confirmation</title>
+    <title>Payment Confirmation</title>
     <style>
         /* Add your CSS styles here */
         body {
@@ -36,11 +36,11 @@
 
 <body>
     <div class="container">
-        <h1>Registration Confirmation - ABC LABORATORY</h1>
+        <h1>Payment Confirmation - ABC LABORATORY</h1>
         <p>Dear {{ $user->name }},</p>
-        <p>Thank you for registering with us!</p>
+        <p>Thank you for joining with us!</p>
         <p>Your Patient ID is: <strong>{{ $patientID }}</strong></p>
-        <p>Please keep this ID safe. This will be your login credentials to login to our system.</p>
+        <p>Your Payment is confirmed. The payment receipt is attached to this email</p>
         <!-- <p>If you have any questions or concerns, feel free to <a href="">contact us</a>.</p> -->
         <p>Best regards,<br>{{ config('app.name') }}</p>
     </div>
