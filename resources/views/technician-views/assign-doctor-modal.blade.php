@@ -8,7 +8,7 @@
             <div class="modal-body">
                 <form action="{{ route('technician.assign_doctor') }}" method="post">
                     {{ csrf_field() }}
-                    <input type="hidden" name="appointment_id" id="appointment_id">
+                    <input type="hidden" name="appointment_id" id="assign_appointment_id">
                     <div class="row">
                         <div class="col-12">
                             <label class="form-label">Select Doctor</label>

@@ -8,7 +8,7 @@
             <div class="modal-body">
                 <form action="{{ route('technician.assign_doctor') }}" method="post">
                     {{ csrf_field() }}
-                    <input type="hidden" name="appointment_id" id="appointment_id">
+                    <input type="hidden" name="appointment_id" id="edit_appointment_id">
 
                     @if($appointments->count() == 0)
                     <div class="row">

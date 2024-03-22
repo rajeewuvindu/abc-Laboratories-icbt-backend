@@ -167,6 +167,8 @@ class PatientController extends Controller
         $payment = new Payment();
         $payment->user()->associate($request->user()->id);
         $payment->appointment()->associate($request->id);
+
+        $payment->invoice_path = "sample";
         if ($request->price) {
             $payment->amount = $request->price;
         } else {

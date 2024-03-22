@@ -36,6 +36,7 @@ class ReportController extends Controller
             $report = new Report();
             $report->user()->associate($request->user_id);
             $report->appointment()->associate($request->appointment_id);
+            $report->addedBy()->associate($request->user()->id);
             $report->file_path = $report_file;
             $report->save();
 

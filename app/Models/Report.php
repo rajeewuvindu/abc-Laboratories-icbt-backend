@@ -21,4 +21,9 @@ class Report extends Model
     {
         return $this->belongsTo(Appointment::class);
     }
+
+    public function addedBy()
+    {
+        return $this->belongsTo(Technician::class, 'added_by');
+    }
 }

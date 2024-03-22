@@ -7,7 +7,7 @@ $(document).ready(function () {
         var id = $(this).val();
         // alert(adminId);
 
-        $('#appointment_id').val(id);
+        $('#assign_appointment_id').val(id);
         // $('#editForm').attr('action', '/reject_admin/'+ adminId)
         $('#assignDoctorModal').modal('show');
 
@@ -19,7 +19,7 @@ $(document).ready(function () {
         var id = $(this).val();
         // alert(adminId);
 
-        $('#appointment_id').val(id);
+        $('#edit_appointment_id').val(id);
         // $('#editForm').attr('action', '/reject_admin/'+ adminId)
         $('#editAppointmentModal').modal('show');
 
