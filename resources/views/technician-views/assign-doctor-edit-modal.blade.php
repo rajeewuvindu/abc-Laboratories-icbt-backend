@@ -49,16 +49,16 @@
                     <div class="col-12 row mt-5 mb-5">
                         <div class="col-6">
                             @if($appointments->count() == 0)
-                            <input type="date" name="date" id="time" class="form-control col-12">
+                            <input type="date" name="date" id="time" class="form-control col-12" required>
                             @else
-                            <input type="date" name="date" id="time" value="{{ $appointment->date }}" class="form-control col-12">
+                            <input type="date" name="date" id="time" value="{{ $appointment->date }}" class="form-control col-12" required>
                             @endif
                         </div>
                         <div class="col-6">
                             @if($appointments->count() == 0)
                             <input type="time" name="time" id="time" class="form-control col-12">
                             @else
-                            <input type="time" name="time" id="time" value="{{ $appointment->time }}" class="form-control col-12">
+                            <input type="time" name="time" id="time" value="{{ $appointment->time }}" class="form-control col-12" required>
                             @endif
 
                         </div>
@@ -66,9 +66,9 @@
 
                     <div class="col-12 mt-5 mb-5">
                         @if($appointments->count() == 0)
-                        <input class="form-control" type="text" name="price" id="price" placeholder="Price">
+                        <input class="form-control" type="text" name="price" id="price" placeholder="Price" required>
                         @else
-                        <input class="form-control" type="text" name="price" id="price" placeholder="Price" value="{{ $appointment->price }}">
+                        <input class="form-control" type="text" name="price" id="price" placeholder="Price" value="{{ $appointment->price }}" required>
                         @endif
                     </div>
 

@@ -24,14 +24,14 @@
                     </div>
                     <div class="col-12 row mt-5 mb-5">
                         <div class="col-6">
-                            <input type="date" name="date" id="time" class="form-control col-12">
+                            <input type="date" name="date" id="time" class="form-control col-12" required>
                         </div>
                         <div class="col-6">
-                            <input type="time" name="time" id="time" class="form-control col-12">
+                            <input type="time" name="time" id="time" class="form-control col-12" required>
                         </div>
                     </div>
                     <div class="col-12 mt-5 mb-5">
-                        <input class="form-control" type="text" name="price" id="price" placeholder="Price">
+                        <input class="form-control" type="text" name="price" id="price" placeholder="Price" required>
                     </div>
                     <div class="modal-footer">
                         <div class="modal-footer">
