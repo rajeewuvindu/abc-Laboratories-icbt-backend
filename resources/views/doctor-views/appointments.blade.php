@@ -33,7 +33,6 @@
 
         <thead>
             <tr>
-                <th data-sortable="true" data-field="status" data-filter-control="input">Status</th>
                 <th data-sortable="true" data-field="id" data-filter-control="input">Patient ID</th>
                 <th data-sortable="true" data-field="name" data-filter-control="input">Patient Name</th>
                 <th data-sortable="true" data-field="test_type" data-filter-control="input">Test Type</th>
@@ -44,9 +43,6 @@
         <tbody>
             @foreach($appointments as $appointment)
             <tr>
-
-                <td class="text-center">{{str_replace('_', ' ', Str::title($appointment->status))}}</td>
-
                 <td class="text-center">{{$appointment->user['patient_id']}}</td>
                 <td class="text-center">{{$appointment->user['name']}}</td>
                 <td class="text-center">{{$appointment->testType['test_type']}}</td>

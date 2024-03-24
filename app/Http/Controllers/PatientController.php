@@ -133,7 +133,7 @@ class PatientController extends Controller
                 "appointment_id" =>  Str::padLeft($payment->appointment_id, 7, 0),
                 "test_type" => $appointment_test_type,
                 "amount" => $payment->amount,
-                'invoice_file' => $file_path . $file,
+                'invoice_file' => 'http://127.0.0.1:8000'. $file,
                 "created_at" => $payment->created_at,
             ];
         }
@@ -153,7 +153,7 @@ class PatientController extends Controller
             $user_name = $report->user->name;
             $file_path = env('HOST_URL');
             $reports_array[] = [
-                'file' => $file_path . $file,
+                'file' => 'http://127.0.0.1:8000'. $file,
                 'appointment_id' =>  Str::padLeft($report->appointment_id, 7, 0),
                 'user_name' => $user_name,
             ];

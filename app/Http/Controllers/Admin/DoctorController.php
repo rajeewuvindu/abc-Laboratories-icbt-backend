@@ -81,9 +81,9 @@ class DoctorController extends Controller
             $doctor->save();
 
             if ($doctor) {
-                return redirect()->back()->with('success', "Changes Saved Successfully");
+                return redirect()->back()->with('success', "Doctor Deleted Successfully");
             } else {
-                return redirect()->back()->with('error', "Failed to edit Doctor");
+                return redirect()->back()->with('error', "Failed to remove Doctor");
             }
         }
     }

@@ -11,7 +11,7 @@ class DoctorController extends Controller
 
     public function showAppointments(Request $request)
     {
-        $appointments = Appointment::where('doctor_id', $request->user()->id)->get();
+        $appointments = Appointment::where('doctor_id', $request->user()->id)->where('status', '!=', 'completed')->get();
         return view('doctor-views.appointments', compact('appointments'));
     }
     public function index()

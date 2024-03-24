@@ -41,7 +41,7 @@
                         <option selected disabled value="">Choose...</option>
                         @foreach($patients as $patient)
                         <option value="{{$patient->id}}">
-                            {{$patient->name}}
+                            {{$patient->name}} ({{$patient->patient_id}})
                         </option>
                         @endforeach
                     </select>

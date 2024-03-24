@@ -17,9 +17,10 @@ $(document).ready(function () {
         // table.on('click', '.rejectEdit', function() {
             // console.log("HI ")
         var id = $(this).val();
-        // alert(adminId);
+        alert(id);
 
         $('#edit_appointment_id').val(id);
+        
         // $('#editForm').attr('action', '/reject_admin/'+ adminId)
         $('#editAppointmentModal').modal('show');
 

@@ -27,6 +27,13 @@ class AppointmentController extends Controller
         ]);
 
         $appointment = Appointment::find($request->appointment_id);
+        $edit = false;
+        if ($appointment && $appointment->date != null || $appointment->time != null || $appointment->price != null || $appointment->doctor_id != null) {
+            $edit = true;
+        } else {
+            $edit = false;
+        }
+
         $appointment->doctor()->associate($request->doctor_id);
         $appointment->date = $request->date;
         $appointment->time = $request->time;
@@ -36,7 +43,11 @@ class AppointmentController extends Controller
 
 
         if ($appointment) {
-            return redirect()->back()->with('success', "Doctor Assigned Successfully");
+            if ($edit) {
+                return redirect()->back()->with('success', "Appointment changes saved Successfully");
+            } else {
+                return redirect()->back()->with('success', "Doctor Assigned Successfully");
+            }
         } else {
             return redirect()->back()->with('error', "Failed to Assign Doctor");
         }
@@ -54,9 +65,9 @@ class AppointmentController extends Controller
 
 
         if ($appointment) {
-            return redirect()->back()->with('success', "Doctor Assigned Successfully");
+            return redirect()->back()->with('success', "Marked as Completed");
         } else {
-            return redirect()->back()->with('error', "Failed to Assign Doctor");
+            return redirect()->back()->with('error', "Failed to Marked as Completed");
         }
     }
 
